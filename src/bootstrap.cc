@@ -66,8 +66,8 @@ enum bootstrapInterface_t { findSubnetIf = -1, dontCareIf = -2 };
 
 // Additional sync functions
 static ncclResult_t bootstrapNetSend(struct ncclSocket* sock, void* data, int size) {
-  NCCLCHECK(ncclSocketSend(sock, &size, sizeof(int)));
-  NCCLCHECK(ncclSocketSend(sock, data, size));
+  NCCLCHECK(ncclSocketSend(sock, &size, sizeof(int))); ///先发送size,即告诉对端数据大小；
+  NCCLCHECK(ncclSocketSend(sock, data, size));         ///再发送payload。
   return ncclSuccess;
 }
 static ncclResult_t bootstrapNetRecv(struct ncclSocket* sock, void* data, int size) {
