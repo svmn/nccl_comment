@@ -103,9 +103,9 @@ static int findInterfaces(const char* prefixList, char* names, union ncclSocketA
   char line[SOCKET_NAME_MAXLEN+1];
 #endif
   struct netIf userIfs[MAX_IFS];
-  bool searchNot = prefixList && prefixList[0] == '^';
+  bool searchNot = prefixList && prefixList[0] == '^';    ///
   if (searchNot) prefixList++;
-  bool searchExact = prefixList && prefixList[0] == '=';
+  bool searchExact = prefixList && prefixList[0] == '=';  ///
   if (searchExact) prefixList++;
   int nUserIfs = parseStringList(prefixList, userIfs, MAX_IFS);
 
@@ -247,7 +247,7 @@ ncclResult_t ncclSocketGetAddrFromString(union ncclSocketAddress* ua, const char
     return ncclInvalidArgument;
   }
 
-  bool ipv6 = ip_port_pair[0] == '[';
+  bool ipv6 = ip_port_pair[0] == '[';     ///
   /* Construct the sockaddress structure */
   if (!ipv6) {
     struct netIf ni;
