@@ -247,7 +247,7 @@ ncclResult_t ncclSocketGetAddrFromString(union ncclSocketAddress* ua, const char
     return ncclInvalidArgument;
   }
 
-  bool ipv6 = ip_port_pair[0] == '[';     ///
+  bool ipv6 = ip_port_pair[0] == '[';     ///91,0x5B
   /* Construct the sockaddress structure */
   if (!ipv6) {
     struct netIf ni;
