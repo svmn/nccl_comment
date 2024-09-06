@@ -2,3 +2,26 @@ svmn comment
 1. /master/src/bootstrap.cc bootstrap网络
 2. /master/src/misc/cudawrap.cc ///CUDA driver api, https://docs.nvidia.com/cuda/pdf/CUDA_Driver_API.pdf
 3. master/src/misc/socket.cc  ///socketProgressOpt封装send recv函数。
+
+
+
+ . ptx isa: https://docs.nvidia.com/cuda/archive/12.2.1/pdf/ptx_isa_8.2.pdf
+ . instrunction set:       https://docs.nvidia.com/cuda/archive/12.5.0/pdf/CUDA_Binary_Utilities.pdf
+
+ .NVIDIA Scalable Hierarchical Aggregation and Reduction Protocol (SHARP) Rev 3.5.1      https://docs.nvidia.com/nvidia-scalable-hierarchical-aggregation-and-reduction-protocol-sharp-rev-3-5-1.pdf
+
+
+
+
+ .DBT tree     https://developer.nvidia.com/blog/massively-scale-deep-learning-training-nccl-2-4/
+
+
+
+
+GP100 Pascal Whitepaper
+https://images.nvidia.com/content/pdf/tesla/whitepaper/pascal-architecture-whitepaper.pdf
+volta-architecture-whitepaper.pdf
+https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf
+
+   . NCCL 代码解读     https://blog.csdn.net/u014443578/article/details/136902252#comments_32861422
+  Sharp： https://github.com/Mellanox/nccl-rdma-sharp-plugins/wiki/NCCL-SHARP-plugin
