@@ -167,7 +167,7 @@ static ncclResult_t cudaPfnFuncLoader(void) {
   LOAD_SYM(cuMulticastAddDevice, 1);
   LOAD_SYM(cuMulticastBindMem, 1);
   LOAD_SYM(cuMulticastBindAddr, 1);
-  LOAD_SYM(cuMulticastCreate, 1);         ///CUDA driver api, 
+  LOAD_SYM(cuMulticastCreate, 1);         ///CUDA driver api, https://docs.nvidia.com/cuda/pdf/CUDA_Driver_API.pdf
   LOAD_SYM(cuMulticastGetGranularity, 1);
   LOAD_SYM(cuMulticastUnbind, 1);
 #endif
