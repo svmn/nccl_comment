@@ -1,9 +1,9 @@
 svmn comment
  . /master/src/init.cc ///初始化，ncclCommInitRank(),
-1. /master/src/bootstrap.cc bootstrap网络,环形网络AllGather ring收集各个节点的信息.
+1. /master/src/bootstrap.cc rank0 发起建立bootstrap网络--环形网络AllGather ring, 分享各个节点的信息.
 2. /master/src/misc/cudawrap.cc ///CUDA driver api, https://docs.nvidia.com/cuda/pdf/CUDA_Driver_API.pdf
-3. master/src/misc/socket.cc  ///socketProgressOpt封装send recv函数。
-
+3. /master/src/misc/socket.cc  ///socketProgressOpt封装send recv函数。
+ . /master/src/misc/utils.cc  ///工具函数. getHash、getHostHash 计算hash
 
 
  . ptx isa: https://docs.nvidia.com/cuda/archive/12.2.1/pdf/ptx_isa_8.2.pdf
