@@ -1,4 +1,5 @@
 svmn comment
+ . /master/src/init.cc ///初始化，ncclCommInitRank(),
 1. /master/src/bootstrap.cc bootstrap网络
 2. /master/src/misc/cudawrap.cc ///CUDA driver api, https://docs.nvidia.com/cuda/pdf/CUDA_Driver_API.pdf
 3. master/src/misc/socket.cc  ///socketProgressOpt封装send recv函数。
