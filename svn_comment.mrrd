@@ -11,6 +11,7 @@
 
 ## 指令参考
  . ptx isa: https://docs.nvidia.com/cuda/archive/12.2.1/pdf/ptx_isa_8.2.pdf 
+    ///Parallel Thread Execution, Nvidia Tensor Core-MMA PTX编程入门, https://blog.csdn.net/weixin_42082868/article/details/130158784
  . instrunction set:       https://docs.nvidia.com/cuda/archive/12.5.0/pdf/CUDA_Binary_Utilities.pdf
 
 
