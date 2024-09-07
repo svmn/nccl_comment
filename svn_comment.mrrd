@@ -40,5 +40,6 @@ https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whit
 ## tensor的mode-n展开和mode-n乘积
  . Tensor Decomposition and Applications:  https://www.kolda.net/publication/TensorReview.pdf
 
-
+统一内存管理
 https://developer.nvidia.com/zh-cn/blog/cuda-unified-memory-introduction-cn/
+https://developer.nvidia.com/zh-cn/blog/unified-memory-cuda-beginners/
