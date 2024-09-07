@@ -14,8 +14,8 @@
     ///Parallel Thread Execution, Nvidia Tensor Core-MMA PTX编程入门, https://blog.csdn.net/weixin_42082868/article/details/130158784
  . instrunction set:       https://docs.nvidia.com/cuda/archive/12.5.0/pdf/CUDA_Binary_Utilities.pdf
 
-
-
+## 《cuda c programming guide》
+ https://docs.nvidia.com/cuda/pdf/CUDA_C_Programming_Guide.pdf
 
 
 ## 网页资源
