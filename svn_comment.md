@@ -10,7 +10,7 @@
  . /master/src/init.cc     ///collNetSetup: 创建集合通信网络?
 
 ## 指令参考
- . ptx isa: https://docs.nvidia.com/cuda/archive/12.2.1/pdf/ptx_isa_8.2.pdf
+ . ptx isa: https://docs.nvidia.com/cuda/archive/12.2.1/pdf/ptx_isa_8.2.pdf 
  . instrunction set:       https://docs.nvidia.com/cuda/archive/12.5.0/pdf/CUDA_Binary_Utilities.pdf
 
 
