@@ -1,11 +1,15 @@
-svmn comment
- . /master/src/init.cc ///初始化，ncclCommInitRank(),
+# svmn comment
+## 代码解读
+>master
+>>master/src/
+>>>/master/src/init.cc ///初始化，ncclCommInitRank(),
 1. /master/src/bootstrap.cc rank0 发起建立bootstrap网络--环形网络AllGather ring, 分享各个节点的信息.
 2. /master/src/misc/cudawrap.cc ///CUDA driver api, https://docs.nvidia.com/cuda/pdf/CUDA_Driver_API.pdf
 3. /master/src/misc/socket.cc  ///socketProgressOpt封装send recv函数。
  . /master/src/misc/utils.cc  ///工具函数. getHash、getHostHash 计算hash
  . /master/src/init.cc     ///collNetSetup: 创建集合通信网络?
 
+## 指令参考
  . ptx isa: https://docs.nvidia.com/cuda/archive/12.2.1/pdf/ptx_isa_8.2.pdf
  . instrunction set:       https://docs.nvidia.com/cuda/archive/12.5.0/pdf/CUDA_Binary_Utilities.pdf
 
@@ -13,17 +17,18 @@ svmn comment
 
 
 
-
+## 网页资源
  .DBT tree     https://developer.nvidia.com/blog/massively-scale-deep-learning-training-nccl-2-4/
 
 
 
-
+## GPU Whitepaper
 GP100 Pascal Whitepaper
 https://images.nvidia.com/content/pdf/tesla/whitepaper/pascal-architecture-whitepaper.pdf
 volta-architecture-whitepaper.pdf
 https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf
 
+## CSDN资源
  . NCCL 代码解读     https://blog.csdn.net/u014443578/article/details/136902252#comments_32861422
  . NVIDIA NCCL 源码学习（十三）- IB SHARP          https://blog.csdn.net/KIDGIN7439/article/details/136631868
  . NVIDIA NCCL 源码学习（十四）- NVLink SHARP      https://blog.csdn.net/KIDGIN7439/article/details/137056421
@@ -31,5 +36,5 @@ https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whit
  . NVLink Sharp:                                  /master/src/transport/nvls.cc 
  . NVIDIA Scalable Hierarchical Aggregation and Reduction Protocol (SHARP) Rev 3.5.1      https://docs.nvidia.com/nvidia-scalable-hierarchical-aggregation-and-reduction-protocol-sharp-rev-3-5-1.pdf
 
-
+## tensor的mode-n展开和mode-n乘积
  . Tensor Decomposition and Applications:  https://www.kolda.net/publication/TensorReview.pdf
