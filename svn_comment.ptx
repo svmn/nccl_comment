@@ -20,7 +20,7 @@
 >>>>>                        struct sockaddr *src_addr, socklen_t *addrlen);  
 >>>>>       ssize_t sendmsg(int sockfd, const struct msghdr *msg, int flags);  
 >>>>>       ssize_t recvmsg(int sockfd, struct msghdr *msg, int flags);  
->>>>> readv()/writev();  
+>>>>>       readv()/writev();  
 >>>>>int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);  
 
 
