@@ -376,10 +376,10 @@ ncclResult_t ncclSocketListen(struct ncclSocket* sock) {
 #endif
   }
 
-  // addr port should be 0 (Any port)
+  // addr port should be 0 (Any port)      /// 绑定端口号，0表示让操作系统自动分配一个可用的端口号
   SYSCHECK(bind(sock->fd, &sock->addr.sa, sock->salen), "bind");
 
-  /* Get the assigned Port */
+  /* Get the assigned Port */              /// 获取实际分配的端口号
   socklen_t size = sock->salen;
   SYSCHECK(getsockname(sock->fd, &sock->addr.sa, &size), "getsockname");
 
