@@ -85,7 +85,7 @@ static uint16_t socketToPort(union ncclSocketAddress *addr) {
 /* Allow the user to force the IPv4/IPv6 interface selection */
 static int envSocketFamily(void) {
   int family = -1; // Family selection is not forced, will use first one found
-  const char* env = ncclGetEnv("NCCL_SOCKET_FAMILY");
+  const char* env = ncclGetEnv("NCCL_SOCKET_FAMILY");       /// 通过环境变量NCCL_SOCKET_FAMILY指定sock_family
   if (env == NULL)
     return family;
 
@@ -326,7 +326,7 @@ int ncclFindInterfaces(char* ifNames, union ncclSocketAddress *ifAddrs, int ifNa
   // Allow user to force the INET socket family selection
   int sock_family = envSocketFamily();
   // User specified interface
-  const char* env = ncclGetEnv("NCCL_SOCKET_IFNAME");
+  const char* env = ncclGetEnv("NCCL_SOCKET_IFNAME");    /// 通过环境变量NCCL_SOCKET_IFNAME指定想用的网卡名，例如通过export NCCL_SOCKET_IFNAME=xgbe0来指定使用xgbe0
   if (env && strlen(env) > 1) {
     INFO(NCCL_ENV, "NCCL_SOCKET_IFNAME set by environment to %s", env);
     // Specified by user : find or fail
