@@ -9,19 +9,19 @@
 >>>>> int socket(int domain, int type, int protocol); /// 创建socket描述符
 >>>>> int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen); /// 把一个地址族中的特定地址赋给socket
 >>>>> int listen(int sockfd, int backlog);  /// listen函数的第一个参数即为要监听的socket描述字，第二个参数为相应socket可以排队的最大连接个数。
->>>>> int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);
->>>>>       ssize_t read(int fd, void *buf, size_t count);
->>>>>       ssize_t write(int fd, const void *buf, size_t count);
->>>>>       ssize_t send(int sockfd, const void *buf, size_t len, int flags);
->>>>>       ssize_t recv(int sockfd, void *buf, size_t len, int flags);
->>>>>       ssize_t sendto(int sockfd, const void *buf, size_t len, int flags,
->>>>>                      const struct sockaddr *dest_addr, socklen_t addrlen);
->>>>>       ssize_t recvfrom(int sockfd, void *buf, size_t len, int flags,
->>>>>                        struct sockaddr *src_addr, socklen_t *addrlen);
->>>>>       ssize_t sendmsg(int sockfd, const struct msghdr *msg, int flags);
->>>>>       ssize_t recvmsg(int sockfd, struct msghdr *msg, int flags);
->>>>> readv()/writev()
->>>>>int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
+>>>>> int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);  
+>>>>>       ssize_t read(int fd, void *buf, size_t count);  
+>>>>>       ssize_t write(int fd, const void *buf, size_t count);  
+>>>>>       ssize_t send(int sockfd, const void *buf, size_t len, int flags);  
+>>>>>       ssize_t recv(int sockfd, void *buf, size_t len, int flags);  
+>>>>>       ssize_t sendto(int sockfd, const void *buf, size_t len, int flags,  
+>>>>>                      const struct sockaddr *dest_addr, socklen_t addrlen);  
+>>>>>       ssize_t recvfrom(int sockfd, void *buf, size_t len, int flags,  
+>>>>>                        struct sockaddr *src_addr, socklen_t *addrlen);  
+>>>>>       ssize_t sendmsg(int sockfd, const struct msghdr *msg, int flags);  
+>>>>>       ssize_t recvmsg(int sockfd, struct msghdr *msg, int flags);  
+>>>>> readv()/writev();  
+>>>>>int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);  
 
 
 >>>>>int close(int fd);
