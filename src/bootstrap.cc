@@ -33,7 +33,7 @@ ncclResult_t bootstrapNetInit() {
       if (env) {
         union ncclSocketAddress remoteAddr;
         if (ncclSocketGetAddrFromString(&remoteAddr, env) != ncclSuccess) {
-          WARN("Invalid NCCL_COMM_ID, please use format: <ipv4>:<port> or [<ipv6>]:<port> or <hostname>:<port>");
+          WARN("Invalid NCCL_COMM_ID, please use format: <ipv4>:<port> or [<ipv6>]:<port> or <hostname>:<port>"); /// 使用环境变量NCCL_COMM_ID指定IP和端口号
           pthread_mutex_unlock(&bootstrapNetLock);
           return ncclInvalidArgument;
         }
