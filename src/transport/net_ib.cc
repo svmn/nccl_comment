@@ -418,20 +418,20 @@ int ncclIbFindMatchingDev(int dev) {
 
   return ncclNMergedIbDevs;
 }
-
+/// 初始化InfiniBand相关的资源和配置，以便在使用NCCL进行高性能通信时，可以利用InfiniBand网络进行数据传输。
 ncclResult_t ncclIbInit(ncclDebugLogger_t logFunction) {
   ncclResult_t ret;
   if (ncclParamIbDisable()) return ncclInternalError;
-  static int shownIbHcaEnv = 0;
-  if(wrap_ibv_symbols() != ncclSuccess) { return ncclInternalError; }
+  static int shownIbHcaEnv = 0;                                       /// 初始化一个静态变量shownIbHcaEnv，用于跟踪是否已经打印了环境变量NCCL_IB_HCA的设置信息。
+  if(wrap_ibv_symbols() != ncclSuccess) { return ncclInternalError; } /// 调用wrap_ibv_symbols函数来初始化必要的InfiniBand符号.
 
   if (ncclNIbDevs == -1) {
     pthread_mutex_lock(&ncclIbLock);
-    wrap_ibv_fork_init();
+    wrap_ibv_fork_init();                                              /// 调用wrap_ibv_fork_init函数进行必要的初始化工作.
     if (ncclNIbDevs == -1) {
       ncclNIbDevs = 0;
       ncclNMergedIbDevs = 0;
-      if (ncclFindInterfaces(ncclIbIfName, &ncclIbIfAddr, MAX_IF_NAME_SIZE, 1) != 1) {
+      if (ncclFindInterfaces(ncclIbIfName, &ncclIbIfAddr, MAX_IF_NAME_SIZE, 1) != 1) {  /// 调用findInterfaces函数来查找指定的网络接口，并将其地址存储在ncclIobIfAddr中.
         WARN("NET/IB : No IP interface found.");
         ret = ncclInternalError;
         goto fail;
@@ -441,7 +441,7 @@ ncclResult_t ncclIbInit(ncclDebugLogger_t logFunction) {
       int nIbDevs;
       struct ibv_device** devices;
 
-      // Check if user defined which IB device:port to use
+      // Check if user defined which IB device:port to use               /// 解析用户指定的设备列表，并根据环境变量的格式确定搜索模式。
       char* userIbEnv = getenv("NCCL_IB_HCA");
       if (userIbEnv != NULL && shownIbHcaEnv++ == 0) INFO(NCCL_NET|NCCL_ENV, "NCCL_IB_HCA set to %s", userIbEnv);
       struct netIf userIfs[MAX_IB_DEVS];
@@ -457,21 +457,21 @@ ncclResult_t ncclIbInit(ncclDebugLogger_t logFunction) {
       int mergeNics;
       mergeNics = ncclParamIbMergeNics();
 build_ib_list:
-      for (int d=0; d<nIbDevs && ncclNIbDevs<MAX_IB_DEVS; d++) {
+      for (int d=0; d<nIbDevs && ncclNIbDevs<MAX_IB_DEVS; d++) {         /// 遍历所有设备，并对每个设备进行如下操作：
         struct ibv_context * context;
-        if (ncclSuccess != wrap_ibv_open_device(&context, devices[d]) || context == NULL) {
+        if (ncclSuccess != wrap_ibv_open_device(&context, devices[d]) || context == NULL) {    /// 打开设备上下文。
           WARN("NET/IB : Unable to open device %s", devices[d]->name);
           continue;
         }
         int nPorts = 0;
         struct ibv_device_attr devAttr;
         memset(&devAttr, 0, sizeof(devAttr));
-        if (ncclSuccess != wrap_ibv_query_device(context, &devAttr)) {
+        if (ncclSuccess != wrap_ibv_query_device(context, &devAttr)) {                         /// 查询设备属性。
           WARN("NET/IB : Unable to query device %s", devices[d]->name);
           if (ncclSuccess != wrap_ibv_close_device(context)) { ret = ncclInternalError; goto fail; }
           continue;
         }
-        for (int port_num = 1; port_num <= devAttr.phys_port_cnt; port_num++) {
+        for (int port_num = 1; port_num <= devAttr.phys_port_cnt; port_num++) {               /// 遍历设备的端口，并检查端口状态。
           struct ibv_port_attr portAttr;
           if (ncclSuccess != wrap_ibv_query_port(context, port_num, &portAttr)) {
             WARN("NET/IB : Unable to query port_num %d", port_num);
@@ -481,11 +481,11 @@ build_ib_list:
           if (portAttr.link_layer != IBV_LINK_LAYER_INFINIBAND
               && portAttr.link_layer != IBV_LINK_LAYER_ETHERNET) continue;
 
-          // check against user specified HCAs/ports
+          // check against user specified HCAs/ports                                          /// 根据用户指定的设备列表筛选设备。
           if (! (matchIfList(devices[d]->name, port_num, userIfs, nUserIfs, searchExact) ^ searchNot)) {
             continue;
           }
-          pthread_mutex_init(&ncclIbDevs[ncclNIbDevs].lock, NULL);
+          pthread_mutex_init(&ncclIbDevs[ncclNIbDevs].lock, NULL);            /// 存储设备信息到ncclIbDevs数组中。
           ncclIbDevs[ncclNIbDevs].device = d;
           ncclIbDevs[ncclNIbDevs].guid = devAttr.sys_image_guid;
           ncclIbDevs[ncclNIbDevs].portAttr = portAttr;
@@ -510,7 +510,7 @@ build_ib_list:
           TRACE(NCCL_NET,"NET/IB: [%d] %s:%s:%d/%s speed=%d context=%p pciPath=%s ar=%d", d, devices[d]->name, devices[d]->dev_name, ncclIbDevs[ncclNIbDevs].portNum,
               portAttr.link_layer == IBV_LINK_LAYER_INFINIBAND ? "IB" : "RoCE", ncclIbDevs[ncclNIbDevs].speed, context, ncclIbDevs[ncclNIbDevs].pciPath, ncclIbDevs[ncclNIbDevs].ar);
 
-          pthread_create(&ncclIbAsyncThread, NULL, ncclIbAsyncThreadMain, ncclIbDevs + ncclNIbDevs);
+          pthread_create(&ncclIbAsyncThread, NULL, ncclIbAsyncThreadMain, ncclIbDevs + ncclNIbDevs);    /// 创建异步线程ncclIbAsyncThread。
           ncclSetThreadName(ncclIbAsyncThread, "NCCL IbAsync %2d", ncclNIbDevs);
           pthread_detach(ncclIbAsyncThread); // will not be pthread_join()'d
 
