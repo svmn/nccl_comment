@@ -1,14 +1,14 @@
-# svmn comment
-## 代码解读
->master
+# svmn comment   
+## 代码解读  
+>master  
 >>master/src/
->>>/master/src/init.cc ///初始化，ncclCommInitRank(),
-1. /master/src/bootstrap.cc rank0 发起建立bootstrap网络--环形网络AllGather ring, 分享各个节点的信息.
-2. /master/src/misc/cudawrap.cc ///CUDA driver api, https://docs.nvidia.com/cuda/pdf/CUDA_Driver_API.pdf
-3. /master/src/misc/socket.cc  ///socketProgressOpt封装send recv函数。实际socket相关的函数有：
->>>>> int socket(int domain, int type, int protocol); /// 创建socket描述符
->>>>> int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen); /// 把一个地址族中的特定地址赋给socket
->>>>> int listen(int sockfd, int backlog);  /// listen函数的第一个参数即为要监听的socket描述字，第二个参数为相应socket可以排队的最大连接个数。
+>>>/master/src/init.cc ///初始化，ncclCommInitRank(),  
+1. /master/src/bootstrap.cc rank0 发起建立bootstrap网络--环形网络AllGather ring, 分享各个节点的信息.  
+2. /master/src/misc/cudawrap.cc ///CUDA driver api, https://docs.nvidia.com/cuda/pdf/CUDA_Driver_API.pdf  
+3. /master/src/misc/socket.cc  ///socketProgressOpt封装send recv函数。实际socket相关的函数有：  
+>>>>> int socket(int domain, int type, int protocol); /// 创建socket描述符  
+>>>>> int bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen); /// 把一个地址族中的特定地址赋给socket  
+>>>>> int listen(int sockfd, int backlog);  /// listen函数的第一个参数即为要监听的socket描述字，第二个参数为相应socket可以排队的最大连接个数。  
 >>>>> int connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen);  
 >>>>>       ssize_t read(int fd, void *buf, size_t count);  
 >>>>>       ssize_t write(int fd, const void *buf, size_t count);  
@@ -26,12 +26,12 @@
 
 >>>>>int close(int fd);
                                                        
- . /master/src/misc/utils.cc  ///工具函数. getHash、getHostHash 计算hash
- . /master/src/init.cc     ///collNetSetup: 创建集合通信网络?
+ . /master/src/misc/utils.cc  ///工具函数. getHash、getHostHash 计算hash  
+ . /master/src/init.cc     ///collNetSetup: 创建集合通信网络?  
 
 ## 指令参考
- . ptx isa: https://docs.nvidia.com/cuda/archive/12.2.1/pdf/ptx_isa_8.2.pdf 
-    ///Parallel Thread Execution, Nvidia Tensor Core-MMA PTX编程入门, https://blog.csdn.net/weixin_42082868/article/details/130158784
+ . ptx isa: https://docs.nvidia.com/cuda/archive/12.2.1/pdf/ptx_isa_8.2.pdf   
+    ///Parallel Thread Execution, Nvidia Tensor Core-MMA PTX编程入门, https://blog.csdn.net/weixin_42082868/article/details/130158784  
  . instrunction set:       https://docs.nvidia.com/cuda/archive/12.5.0/pdf/CUDA_Binary_Utilities.pdf
 
 ## 《cuda c programming guide》
