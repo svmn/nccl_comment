@@ -391,7 +391,7 @@ ncclResult_t ncclSocketListen(struct ncclSocket* sock) {
   /* Put the socket in listen mode
    * NB: The backlog will be silently truncated to the value in /proc/sys/net/core/somaxconn
    */
-  SYSCHECK(listen(sock->fd, 16384), "listen");
+  SYSCHECK(listen(sock->fd, 16384), "listen"); /// int listen(int sockfd, int backlog);
   sock->state = ncclSocketStateReady;
   return ncclSuccess;
 }
