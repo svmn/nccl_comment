@@ -44,22 +44,22 @@ v8.0  https://hpc.pku.edu.cn/docs/20170829223400085039.pdf
 
 
 ## GPU Whitepaper
-GP100 Pascal Whitepaper
-https://images.nvidia.com/content/pdf/tesla/whitepaper/pascal-architecture-whitepaper.pdf
-volta-architecture-whitepaper.pdf
-https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf
+GP100 Pascal Whitepaper  
+https://images.nvidia.com/content/pdf/tesla/whitepaper/pascal-architecture-whitepaper.pdf  
+volta-architecture-whitepaper.pdf  
+https://images.nvidia.com/content/volta-architecture/pdf/volta-architecture-whitepaper.pdf  
 
 ## CSDN资源
- . NCCL 代码解读     https://blog.csdn.net/u014443578/article/details/136902252#comments_32861422
- . NVIDIA NCCL 源码学习（十三）- IB SHARP          https://blog.csdn.net/KIDGIN7439/article/details/136631868
- . NVIDIA NCCL 源码学习（十四）- NVLink SHARP      https://blog.csdn.net/KIDGIN7439/article/details/137056421
- . IB Sharp源码：                                 https://github.com/Mellanox/nccl-rdma-sharp-plugins/wiki/NCCL-SHARP-plugin
- . NVLink Sharp:                                  /master/src/transport/nvls.cc 
- . NVIDIA Scalable Hierarchical Aggregation and Reduction Protocol (SHARP) Rev 3.5.1      https://docs.nvidia.com/nvidia-scalable-hierarchical-aggregation-and-reduction-protocol-sharp-rev-3-5-1.pdf
+ . NCCL 代码解读     https://blog.csdn.net/u014443578/article/details/136902252#comments_32861422  
+ . NVIDIA NCCL 源码学习（十三）- IB SHARP          https://blog.csdn.net/KIDGIN7439/article/details/136631868  
+ . NVIDIA NCCL 源码学习（十四）- NVLink SHARP      https://blog.csdn.net/KIDGIN7439/article/details/137056421  
+ . IB Sharp源码：                                 https://github.com/Mellanox/nccl-rdma-sharp-plugins/wiki/NCCL-SHARP-plugin  
+ . NVLink Sharp:                                  /master/src/transport/nvls.cc  
+ . NVIDIA Scalable Hierarchical Aggregation and Reduction Protocol (SHARP) Rev 3.5.1      https://docs.nvidia.com/nvidia-scalable-hierarchical-aggregation-and-reduction-protocol-sharp-rev-3-5-1.pdf  
 
 ## tensor的mode-n展开和mode-n乘积
- . Tensor Decomposition and Applications:  https://www.kolda.net/publication/TensorReview.pdf
+ . Tensor Decomposition and Applications:  https://www.kolda.net/publication/TensorReview.pdf  
 
-统一内存管理
-https://developer.nvidia.com/zh-cn/blog/cuda-unified-memory-introduction-cn/
-https://developer.nvidia.com/zh-cn/blog/unified-memory-cuda-beginners/
+统一内存管理  
+https://developer.nvidia.com/zh-cn/blog/cuda-unified-memory-introduction-cn/  
+https://developer.nvidia.com/zh-cn/blog/unified-memory-cuda-beginners/  
