@@ -87,7 +87,7 @@ ncclResult_t wrap_ibv_symbols(void) {
   container.call; \
   return ncclSuccess;
 
-ncclResult_t wrap_ibv_fork_init() {
+ncclResult_t wrap_ibv_fork_init() { /// 通过ibv_internal_fork_init()在进程分叉（fork）之前初始化InfiniBand库,避免fork引起rdma网卡读写出错.
   IBV_INT_CHECK(ibvSymbols, ibv_internal_fork_init, ibv_internal_fork_init(), -1, "ibv_fork_init");
 }
 
