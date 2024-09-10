@@ -367,15 +367,15 @@ static ncclResult_t ncclIbGetPciPath(char* devName, char** path, int* realPort) 
 }
 
 static int ibvWidths[] = { 1, 4, 8, 12, 2 };
-static int ibvSpeeds[] = {
-  2500,  /* SDR */
-  5000,  /* DDR */
+static int ibvSpeeds[] = {  /// 【infiniband】SDR、DDR、QDR、FDR、EDR、HDR、NDR详解  http://www.bro-way.com/newsinfo/6661138.html
+  2500,  /* SDR */          /// SDR: Single Data Rate   单倍数据率,即2.5Gb/s        8b/10b  x4
+  5000,  /* DDR */          /// DDR: Double Data Rate   双倍数据率,即5Gb/s          8b/10b
+  10000, /* QDR */          /// QDR: Quad Data Rate     四倍数据率,即10Gb/s         8b/10b
   10000, /* QDR */
-  10000, /* QDR */
-  14000, /* FDR */
-  25000, /* EDR */
-  50000, /* HDR */
-  100000 /* NDR */ };
+  14000, /* FDR */          /// FDR: Fourteen Data Rate 十四倍数据率,即14.0625Gb/s  64/66b
+  25000, /* EDR */          /// EDR: Enhanced Data Rate 25.78125 Gb/s            64/66b
+  50000, /* HDR */          /// HDR: High Data Rate     50 Gb/s                 64/66b
+  100000 /* NDR */ };       /// NDR: Next Data Rate     100 Gb/s+               64/66b
 
 static int firstBitSet(int val, int max) {
   int i = 0;
