@@ -109,30 +109,30 @@ static int findInterfaces(const char* prefixList, char* names, union ncclSocketA
   if (searchExact) prefixList++;
   int nUserIfs = parseStringList(prefixList, userIfs, MAX_IFS);
 
-  int found = 0;
+  int found = 0;                                         /// 已找到的接口数量
   struct ifaddrs *interfaces, *interface;
-  getifaddrs(&interfaces);
-  for (interface = interfaces; interface && found < maxIfs; interface = interface->ifa_next) {
-    if (interface->ifa_addr == NULL) continue;
+  getifaddrs(&interfaces);                               /// 获取所有网络接口的信息
+  for (interface = interfaces; interface && found < maxIfs; interface = interface->ifa_next) {  /// 遍历所有接口
+    if (interface->ifa_addr == NULL) continue;           /// 如果接口地址为空，则跳过
 
     /* We only support IPv4 & IPv6 */
-    int family = interface->ifa_addr->sa_family;
-    if (family != AF_INET && family != AF_INET6)
+    int family = interface->ifa_addr->sa_family;         /// 获取接口地址族
+    if (family != AF_INET && family != AF_INET6)         /// 检查地址族是否为IPv4或IPv6
       continue;
 
     TRACE(NCCL_INIT|NCCL_NET,"Found interface %s:%s", interface->ifa_name, ncclSocketToString((union ncclSocketAddress *) interface->ifa_addr, line));
 
     /* Allow the caller to force the socket family type */
-    if (sock_family != -1 && family != sock_family)
+    if (sock_family != -1 && family != sock_family)       /// 如果指定了特定地址族，则检查是否匹配
       continue;
 
-    /* We also need to skip IPv6 loopback interfaces */
+    /* We also need to skip IPv6 loopback interfaces */   /// 对于IPv6地址，检查是否为回环地址
     if (family == AF_INET6) {
       struct sockaddr_in6* sa = (struct sockaddr_in6*)(interface->ifa_addr);
       if (IN6_IS_ADDR_LOOPBACK(&sa->sin6_addr)) continue;
     }
 
-    // check against user specified interfaces
+    // check against user specified interfaces            /// 检查接口名称是否匹配用户指定的列表
     if (!(matchIfList(interface->ifa_name, -1, userIfs, nUserIfs, searchExact) ^ searchNot)) {
       continue;
     }
@@ -141,10 +141,10 @@ static int findInterfaces(const char* prefixList, char* names, union ncclSocketA
     // getifaddrs() normal order appears to be; IPv4, IPv6 Global, IPv6 Link
     bool duplicate = false;
     for (int i = 0; i < found; i++) {
-      if (strcmp(interface->ifa_name, names+i*maxIfNameSize) == 0) { duplicate = true; break; }
+      if (strcmp(interface->ifa_name, names+i*maxIfNameSize) == 0) { duplicate = true; break; }   /// 检查是否已经有重复的接口名
     }
 
-    if (!duplicate) {
+    if (!duplicate) {             /// 如果没有重复，则添加到结果列表中
       // Store the interface name
       strncpy(names+found*maxIfNameSize, interface->ifa_name, maxIfNameSize);
       // Store the IP address
@@ -154,8 +154,8 @@ static int findInterfaces(const char* prefixList, char* names, union ncclSocketA
     }
   }
 
-  freeifaddrs(interfaces);
-  return found;
+  freeifaddrs(interfaces);    /// 释放接口地址结构
+  return found;               /// 返回找到的接口数量
 }
 
 static bool matchSubnet(struct ifaddrs local_if, union ncclSocketAddress* remote) {
