@@ -443,7 +443,7 @@ ncclResult_t unexpectedEnqueue(struct bootstrapState* state, int peer, int tag, 
   NCCLCHECK(ncclCalloc(&unex, 1));
   unex->peer = peer;
   unex->tag = tag;
-  memcpy(&unex->sock, sock, sizeof(struct ncclSocket));   ///memcpy(dst, src, size)
+  memcpy(&unex->sock, sock, sizeof(struct ncclSocket));   /// memcpy(dst, src, size)
 
   // Enqueue
   struct unexConn* list = state->unexpectedConnections;
@@ -462,9 +462,9 @@ ncclResult_t unexpectedDequeue(struct bootstrapState* state, int peer, int tag, 
   *found = 0;
   while (elem) {
     if (elem->peer == peer && elem->tag == tag) {
-      if (prev == NULL) {
+      if (prev == NULL) { /// 如果prev为NULL（即当前元素是链表的头部），则更新state->unexpectedConnections为elem->next，从而移除头部元素。
         state->unexpectedConnections = elem->next;
-      } else {
+      } else {            /// 否则，更新prev->next为elem->next，从而移除当前元素。
         prev->next = elem->next;
       }
       memcpy(sock, &elem->sock, sizeof(struct ncclSocket));
