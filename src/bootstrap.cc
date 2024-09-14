@@ -443,7 +443,7 @@ ncclResult_t unexpectedEnqueue(struct bootstrapState* state, int peer, int tag, 
   NCCLCHECK(ncclCalloc(&unex, 1));
   unex->peer = peer;
   unex->tag = tag;
-  memcpy(&unex->sock, sock, sizeof(struct ncclSocket));
+  memcpy(&unex->sock, sock, sizeof(struct ncclSocket));   ///memcpy(dst, src, size)
 
   // Enqueue
   struct unexConn* list = state->unexpectedConnections;
